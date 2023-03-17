@@ -13,7 +13,7 @@ prodRouter.post("/add", async (req, res) => {
   const body = req.body;
   const result = await addProduct(body);
   try {
-    res.status(200).send(result);
+    res.status(200).send({ data: result });
   } catch (error) {
     res.status(400).send({ error: "something went left" });
   }
