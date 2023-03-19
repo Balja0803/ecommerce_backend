@@ -5,7 +5,7 @@ const db = mongoose
     "mongodb+srv://balja0803:celo0803@cluster0.steqanz.mongodb.net/ecommerce"
   )
   .then((res) => {
-    console.log("connected");
+    console.log("ecommerce DB is connected");
   })
   .catch((err) => {
     console.log(err);
