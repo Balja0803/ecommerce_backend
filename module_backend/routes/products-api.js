@@ -27,18 +27,18 @@ prodRouter.get("/", async (req, res) => {
   }
 });
 
-prodRouter.post("/add", upload.array("images", 3), async (req, res) => {
+prodRouter.post("/add", upload.single("image"), async (req, res) => {
   console.log("product POST huselt", req.body);
-  console.log("images", req.files);
-  const body = req.body;
-  const images = req.files;
+  console.log("images", req.file);
+  // const body = req.body;
+  // const images = req.files;
 
-  const result = await addProduct(body, images);
-  try {
-    res.status(200).send({ data: result });
-  } catch (error) {
-    res.status(400).send({ error: "something went left" });
-  }
+  // const result = await addProduct(body, images);
+  // try {
+  //   res.status(200).send({ data: result });
+  // } catch (error) {
+  //   res.status(400).send({ error: "something went left" });
+  // }
 });
 
 // prodRouter.post("/image", (req, res) => {

@@ -6,12 +6,13 @@ import fs from "fs";
 import db from "./config/mongo-config.js";
 import userRouter from "./routes/users-api.js";
 import prodRouter from "./routes/products-api.js";
+// import cloudinary from "./config/cloudinary-config.js";
 
 const app = express();
 const port = 2323;
 
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
 app.use("/users", userRouter);
 app.use("/products", prodRouter);
 
@@ -25,6 +26,20 @@ export const Storage = multer.diskStorage({
 export const upload = multer({
   storage: Storage,
 });
+
+// const res = cloudinary.v2.uploader.upload(
+//   "/Users/morning/Downloads/design_startframe__cffzwjeyro2q_large.jpeg",
+//   { folder: "test", use_filename: true }
+// );
+
+// res
+//   .then((data) => {
+//     console.log(data);
+//     console.log(data.secure_url);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
