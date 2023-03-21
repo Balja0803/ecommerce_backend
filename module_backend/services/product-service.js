@@ -6,29 +6,11 @@ export const getProduct = async () => {
   });
 };
 
-export const addProduct = async (productReq) => {
-  // console.log("product Body", body);
-  // console.log("product specs", specs);
-  // const obj = JSON.parse(body);
-  // const objSpecs = JSON.parse(specs);
-  // console.log(obj);
-  // console.log(objSpecs);
-  // console.log("image path", path);
-  // const newProduct = new product({
-  //   name: obj.name,
-  //   price: obj.price,
-  //   stock: obj.stock,
-  //   sale: obj.sale,
-  //   specs: [...objSpecs],
-  //   brand: obj.brand,
-  //   category: obj.category,
-  //   description: obj.description,
-  //   image: path,
-  // });
-
-  const newProduct = new product(productReq);
-
+export const addProduct = async (productDetails) => {
+  const newProduct = new product(productDetails);
   const result = await newProduct.save();
+
   console.log(result);
+
   return result;
 };
