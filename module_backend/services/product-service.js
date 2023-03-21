@@ -1,5 +1,4 @@
 import product from "../model/product.js";
-import fs from "fs";
 
 export const getProduct = async () => {
   return await product.find({}).then((res) => {
@@ -7,46 +6,29 @@ export const getProduct = async () => {
   });
 };
 
-// export const addProduct = async (body, images) => {
-//   const newProduct = new product({
-//     name: body.name,
-//     price: body.price,
-//     stock: body.stock,
-//     sale: body.sale,
-//     specs: body.specs,
-//     brand: body.brand,
-//     category: body.category,
-//     description: body.description,
-//     image: {
-//       data: fs.readFileSync("./uploads/" + images.filename),
-//       contentType: "image/png",
-//     },
-//   });
-//   const result = await newProduct.save();
-//   return result;
-// };
+export const addProduct = async (productReq) => {
+  // console.log("product Body", body);
+  // console.log("product specs", specs);
+  // const obj = JSON.parse(body);
+  // const objSpecs = JSON.parse(specs);
+  // console.log(obj);
+  // console.log(objSpecs);
+  // console.log("image path", path);
+  // const newProduct = new product({
+  //   name: obj.name,
+  //   price: obj.price,
+  //   stock: obj.stock,
+  //   sale: obj.sale,
+  //   specs: [...objSpecs],
+  //   brand: obj.brand,
+  //   category: obj.category,
+  //   description: obj.description,
+  //   image: path,
+  // });
 
-export const addProduct = async (body, images) => {
-  const newImages = images.map((image) => {
-    return image.filename;
-  });
+  const newProduct = new product(productReq);
 
-  const newProduct = new product({
-    name: body.name,
-    price: body.price,
-    stock: body.stock,
-    sale: body.sale,
-    specs: body.specs,
-    brand: body.brand,
-    category: body.category,
-    description: body.description,
-    image: newImages.map((img) => {
-      return {
-        data: fs.readFileSync("./uploads/" + img),
-        contentType: "image/png",
-      };
-    }),
-  });
   const result = await newProduct.save();
+  console.log(result);
   return result;
 };

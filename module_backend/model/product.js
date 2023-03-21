@@ -9,13 +9,7 @@ const productSchema = new mongoose.Schema({
   brand: String,
   category: String,
   description: String,
-  image: [
-    {
-      data: Buffer,
-      contentType: String,
-    },
-  ],
-
+  image: [String],
   created_date: {
     type: Date,
     default: Date.now,

@@ -1,20 +1,9 @@
 import express from "express";
-import multer from "multer";
-import fs from "fs";
 import { addProduct, getProduct } from "../services/product-service.js";
 import { imageUpload } from "../services/image-service.js";
-import product from "../model/product.js";
+import upload from "../util/multer-handler.js";
 
 const prodRouter = express.Router();
-
-const Storage = multer.diskStorage({
-  destination: "./uploads/",
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
-
-const upload = multer({ storage: Storage });
 
 prodRouter.get("/", async (req, res) => {
   console.log("product GET request");
@@ -27,18 +16,26 @@ prodRouter.get("/", async (req, res) => {
 });
 
 prodRouter.post("/add", upload.single("image"), async (req, res) => {
-  console.log("product POST huselt", req.body);
+  console.log("product POST huselt", req.body.body);
+  console.log("specs", req.body.specs);
   console.log("images", req.file);
-  // const body = req.body;
 
-  imageUpload(req.file);
+  const body = req.body.body;
+  const specs = JSON.parse(req.body.specs);
+  const path = await imageUpload(req.file);
 
-  // const result = await addProduct(body, images);
-  // try {
-  //   res.status(200).send({ data: result });
-  // } catch (error) {
-  //   res.status(400).send({ error: "something went left" });
-  // }
+  const product = {
+    image: path,
+    specs: [...specs],
+    ...JSON.parse(body),
+  };
+
+  const result = await addProduct(product);
+  try {
+    res.status(200).send({ data: result });
+  } catch (error) {
+    res.status(400).send({ error: "something went left" });
+  }
 });
 
 export default prodRouter;
