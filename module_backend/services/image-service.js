@@ -3,8 +3,9 @@ import fs from "fs";
 
 export const imageUpload = async (image, folder) => {
   console.log(image.path);
-  const result = await cloudinary.v2.uploader.upload(images.path, {
-    folder: folder,
+  // const name = JSON.parse(folder);
+  const result = await cloudinary.v2.uploader.upload(image.path, {
+    folder: folder.name,
     use_filename: true,
   });
   return result.secure_url;
