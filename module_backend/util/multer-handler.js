@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 const Storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "/tmp"); //"C:/Users/jxsjv/AppData/Local/Temp" for windows, "/tmp" for mac
+    cb(null, "C:/Users/jxsjv/AppData/Local/Temp"); //"C:/Users/jxsjv/AppData/Local/Temp" for windows, "/tmp" for mac
   },
   filename: (req, file, cb) => {
     const ext = getExtension(file.originalname);

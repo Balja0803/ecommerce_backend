@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Schema } from "mongoose";
 
 const productSchema = new mongoose.Schema(
   {
@@ -7,8 +8,14 @@ const productSchema = new mongoose.Schema(
     stock: Number,
     sale: Number,
     specs: [Object],
-    brand: String,
-    category: String,
+    brand: {
+      type: Schema.Types.String,
+      ref: "brands",
+    },
+    category: {
+      type: Schema.Types.String,
+      ref: "categories",
+    },
     description: String,
     image: [String],
     created_date: {
