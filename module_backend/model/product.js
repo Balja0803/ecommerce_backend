@@ -10,11 +10,11 @@ const productSchema = new mongoose.Schema(
     specs: [Object],
     brand: {
       type: Schema.Types.String,
-      ref: "brands",
+      ref: "brand",
     },
     category: {
       type: Schema.Types.String,
-      ref: "categories",
+      ref: "category",
     },
     description: String,
     image: [String],

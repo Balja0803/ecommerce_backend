@@ -1,9 +1,13 @@
 import product from "../model/product.js";
 
 export const getProduct = async () => {
-  return await product.find({}).then((res) => {
-    return res;
-  });
+  return await product
+    .find({})
+    .populate("brand")
+    .populate("category")
+    .then((res) => {
+      return res;
+    });
 };
 
 export const addProduct = async (productDetails) => {
