@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: String,
+    username: { type: String, required: true },
     role: String,
     gender: String,
-    password: String,
+    password: { type: String, required: true },
     contact: Number,
     address1: String,
     address2: String,
