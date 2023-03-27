@@ -8,7 +8,6 @@ import userRouter from "./routes/users-api.js";
 import prodRouter from "./routes/products-api.js";
 import categoryRouter from "./routes/category-api.js";
 import brandRouter from "./routes/brand-api.js";
-import restaurantRouter from "./routes/restaurant-api.js";
 
 const app = express();
 dotenv.config();
@@ -20,7 +19,6 @@ app.use("/users", userRouter);
 app.use("/products", prodRouter);
 app.use("/categories", categoryRouter);
 app.use("/brands", brandRouter);
-app.use("/restaurants", restaurantRouter);
 
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`);
