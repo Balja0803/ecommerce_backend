@@ -1,5 +1,9 @@
 import express from "express";
-import { addProduct, getProduct } from "../services/product-service.js";
+import {
+  addProduct,
+  filterProducts,
+  getProduct,
+} from "../services/product-service.js";
 import { uploadToCloudinary } from "../services/image-service.js";
 import upload from "../util/multer-handler.js";
 // import cloudinary from "../config/cloudinary-config.js";
@@ -45,6 +49,14 @@ prodRouter.post("/add", upload.array("images", 3), async (req, res) => {
   } catch (error) {
     res.status(400).send({ error: "something went left" });
   }
+});
+
+prodRouter.get("/:id", async (req, res) => {
+  console.log(req.params);
+  const id = req.params.id;
+  const result = await filterProducts(id);
+  console.log("filter result", result);
+  res.status(200).send(result);
 });
 
 export default prodRouter;

@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 const db = mongoose
-  .connect(
-    "mongodb+srv://balja0803:celo0803@cluster0.steqanz.mongodb.net/ecommerce"
-  )
+  .connect(process.env.MONGO_CONNECT)
   .then((res) => {
     console.log("ecommerce DB is connected");
   })

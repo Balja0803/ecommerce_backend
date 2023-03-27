@@ -18,3 +18,7 @@ export const addProduct = async (productDetails) => {
 
   return result;
 };
+
+export const filterProducts = async (id) => {
+  return await product.find({ category: id });
+};
