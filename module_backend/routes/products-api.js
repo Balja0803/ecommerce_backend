@@ -59,4 +59,6 @@ prodRouter.get("/:id", async (req, res) => {
   res.status(200).send(result);
 });
 
+// prodRouter.get("/")
+
 export default prodRouter;

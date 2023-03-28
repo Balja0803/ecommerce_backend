@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-// config = process.env;
 
 const verifyToken = (req, res, next) => {
   const token =
