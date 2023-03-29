@@ -22,3 +22,9 @@ export const addProduct = async (productDetails) => {
 export const filterProducts = async (id) => {
   return await product.find({ category: id });
 };
+
+export const productPage = (query) => {
+  console.log(query);
+  const products_per_page = 10;
+  const count = product.estimatedDocumentCount({});
+};
