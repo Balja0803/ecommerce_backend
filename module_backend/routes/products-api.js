@@ -75,9 +75,14 @@ prodRouter.get("/:id", async (req, res) => {
 prodRouter.get("/", async (req, res) => {
   console.log("products GET");
   console.log("query", req.query);
-  const page = req.query.page || 1;
+  const page = parseInt(req.query.page) || 1;
 
-  const result = productPage(page);
+  const result = await productPage(page);
+  try {
+    res.status(200).send(result);
+  } catch (error) {
+    res.status(400).send({ error: "error" });
+  }
 });
 
 export default prodRouter;
