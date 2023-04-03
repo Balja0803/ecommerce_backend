@@ -31,6 +31,8 @@ export const productPage = async (query) => {
   const productList = await Product.find({})
     .skip(skip)
     .limit(products_per_page)
+    .populate("brand")
+    .populate("category")
     .exec();
   const products = {
     list: productList,
